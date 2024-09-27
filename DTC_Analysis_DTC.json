@@ -1,0 +1,302 @@
+[
+    {
+        "dtc_code": "0x100004",
+        "description": "DTC_OTA_FAIL",
+        "fault reason": "When the platform sends a firmware upgrade request to the charging pile's OCPP process, there are five scenarios that will trigger this error:\r\n\r\nAttempted download count exceeds 3 times.\r\nThe firmware update zip file being downloaded does not exist.\r\nThe firmware's validity is checked using a certificate from the system files; if invalid, this triggers an error.\r\nIf the MD5 checksum of the extracted upgrade components fails.\r\nThe upgrade file lacks an upgrade package for the A7 component.\r\nIf the M4 upgrade fails, it returns NO_UPDATE or UPDATE_FAILED status to the charging pile. At this point, all guns will be restored to available, and temporary upgrade files will be deleted.",
+        "resolution": "Check if the network cable is properly connected.\nCheck if the firmware update zip file exists.\nCheck if the file certificate is valid.\nCheck if the MD5 checksum information is correct.\nCheck if there is an A7 firmware upgrade package in the upgrade file."
+    },
+    {
+        "dtc_code": "0x100005",
+        "description": "DTC_CARDREADER_COMERR",
+        "fault reason": "During the initialization operation of the card reader, a ping to the device is performed every 10 seconds. If the device fails to respond for three consecutive times, the program will trigger this fault and reset the device (releasing the serial port, waiting for 5 seconds, and then initializing the serial port).",
+        "resolution": "If the card reader is a POS machine, it is necessary to check whether the software version needs to be upgraded and to examine the communication cables. For other card readers, check whether the wiring is correct. Pay attention to which configuration method is used in the web settings, either Pax or QB."
+    },
+    {
+        "dtc_code": "0x100007",
+        "description": "DTC_INSULATION_WARNING",
+        "fault reason": "When the calculated values CalcRp and CalcRn are both greater than Standard_R_Err, determine whether either of these values is less than Standard_R_War. If this condition is met, the insulation warning filter counter is incremented. If the insulation warning filter counter exceeds 6, an insulation warning is reported. When the voltage is too low, there is no resistance value, and it is directly determined that there is no issue with the insulation.",
+        "resolution": "Check the charging pile's input cables, the charging gun, and whether the insulation detection board is working properly. Review the insulation resistance values in the log."
+    },
+    {
+        "dtc_code": "0x100009",
+        "description": "DTC_TERMINAL_SD_ERR",
+        "fault reason": "This error is triggered when the SD card does not exist or is write-protected.",
+        "resolution": "Check the status of the SD card at the pile end (whether it exists and if the SD card is in read-only mode). Check if the terminal control board is malfunctioning. You can check the SD card's node via SSH using the `mount` command."
+    },
+    {
+        "dtc_code": "0x10000A",
+        "description": "DTC_TERMINAL_SURGE_WARN",
+        "fault reason": "Calculate the time interval between the feedback time of this surge and the time recorded for the last surge. If the time interval is less than or equal to 15 seconds, it will trigger a terminal surge protection alarm. The NewSensor_main function will loop indefinitely during runtime, and this fault will stop after the hardware is replaced and no issues are detected upon re-testing.",
+        "resolution": "Check if the surge protector is damaged; if so, replace the hardware. Inspect whether the wiring of the surge protector is normal."
+    },
+    {
+        "dtc_code": "0x10000C",
+        "description": "DTC_SECCSOCKET_OFFLINE",
+        "fault reason": "During SECC initialization and SECC data initialization, the default state of the SECC socket for the gun is offline.\r\n\r\n- If both guns require testing, with the corresponding gun's PLC board enabled, if the protocol communication control flow state is in the process of re-establishing the socket state (either the software version is not read within 20 seconds after successful power-up, or the TCP connection in standby state is abnormal), it will trigger the corresponding gun's DTC code.\r\n\r\n- If only one gun requires testing, with the first gun's PLC board enabled, if the protocol communication control flow state is in the process of re-establishing the socket state (either the software version is not read within 20 seconds after successful power-up, or the TCP connection in standby state is abnormal), it will trigger the first gun's DTC code. The second gun does not need to be online by default.\r\n\r\n- If only the second gun requires testing, with the second gun's PLC board enabled, if the protocol communication control flow state is in the process of re-establishing the socket state (either the software version is not read within 20 seconds after successful power-up, or the TCP connection in standby state is abnormal), it will trigger the second gun's DTC code. The first gun does not need to be online by default.",
+        "resolution": "Check whether the network cable connection between the SECC board and the main A7 is normal. Log in via SSH to view the IP addresses of the two SECC boards."
+    },
+    {
+        "dtc_code": "0x100010",
+        "description": "DTC_SELF_CHECKING",
+        "fault reason": "After the rectifier cabinet is started, if the emergency stop state changes six times (the button is pressed three times) within 3 seconds and no gun is available, a self-test is initiated. A self-test message is sent to the terminal, waiting for a reply from the terminal. If the pile end reports that the self-test of this gun is successful, then it will continue to notify the next gun to start the self-test, following the same process, one after another. If no successful self-test response is received or a self-test error is returned within 60 seconds, then this self-test session ends.",
+        "resolution": "Wait for self test to complete"
+    },
+    {
+        "dtc_code": "0x100011",
+        "description": "DTC_SELF_CHECK_ERR",
+        "fault reason": "During the self-test, the terminal loops six times (each time 0.1s) and triggers this error when it detects that the meter voltage is below 150V or the cable is connected in reverse.",
+        "resolution": "Check if the cable is connected in reverse."
+    },
+    {
+        "dtc_code": "0x100018",
+        "description": "DTC_OUTPUTRELAY_CTRLALM",
+        "fault reason": "When the charging pile is in a state between DC_EVPARA_GET and DC_CHARGE (inclusive of both), if at this time the positive and negative IO port input states are high and the relay is not a new model, or if the states are low and the relay is a new model, and the timer exceeds 10 seconds, this triggers the DTC.",
+        "resolution": "Check if the output relay circuit is normal and examine if the relay module is damaged."
+    },
+    {
+        "dtc_code": "0x100101",
+        "description": "DTC_INTERNAL_OVERTEMP",
+        "fault reason": "When the temperature measured by the sensor on the environmental monitoring board is not 0 and the temperature value is greater than or equal to 80 degrees Celsius (1300, accuracy 0.1, offset value 50 degrees), it will trigger an internal over-temperature fault in the terminal.",
+        "resolution": "Check if the air filter is clogged. If it is clogged, it needs to be cleaned and replaced promptly."
+    },
+    {
+        "dtc_code": "0x100102",
+        "description": "DTC_CONNECTOR_OVERTEMP",
+        "fault reason": "If the temperature collected by the gun exceeds the set over-temperature threshold of 90 degrees Celsius (without adding the offset value of 150 degrees) and is determined to be a gun over-temperature fault after 20 times of debounce judgment.",
+        "resolution": "After waiting, proceed with the current reduction process."
+    },
+    {
+        "dtc_code": "0x100202",
+        "description": "DTC_EMERGENCYSTOP",
+        "fault reason": "The sensor detects that the emergency stop button has been pressed, triggering an emergency stop fault at the pile end.",
+        "resolution": "Check if the emergency stop button has been pressed and inspect the wiring of the emergency stop button."
+    },
+    {
+        "dtc_code": "0x100205",
+        "description": "DTC_LOCK_CTRLERR",
+        "fault reason": "This error is triggered if the SAE J1772 connector (commonly referred to as the American standard gun) is manually pressed 100 times before the start of insulation testing.",
+        "resolution": "Try multiple times and check the gun lock control switch."
+    },
+    {
+        "dtc_code": "0x100206",
+        "description": "DTC_GROUND_ERR",
+        "fault reason": "In the message parsing function, read the message from the CAN. If the ground fault status bit corresponding to the insulation detection board is in an error state, this fault will be triggered.",
+        "resolution": "Check if the PE line or ground wire is connected or damaged. Verify if the equipment is properly grounded."
+    },
+    {
+        "dtc_code": "0x100207",
+        "description": "DTC_INSULATIONBRD_ERR",
+        "fault reason": "1. Insulation detection board timeout judgment if it exceeds 10 seconds.\r\n2. New insulation detection board reverse connection error (detected incorrect connection and low voltage 3 times) or old model incorrect connection and low voltage condition, and the charging pile's status is after insulation. Judging reverse connection, more than 10 times will trigger this DTC error.",
+        "resolution": "Check if the insulation detection board is reverse connected. Inspect whether the connection between the insulation detection board and the M4 is normal."
+    },
+    {
+        "dtc_code": "0x100208",
+        "description": "DTC_OUTPUTRELAY_CTRLERR",
+        "fault reason": "If the gun is American Standard (SAE J1772), European Standard, or Japanese Standard (CHAdeMO):\r\n\r\nWhen the charging pile's state is DC_RELAY_CTRL or DC_READY_CHARG. If the control relay fails, set a 2-second timer for timeout to trigger this DTC.\r\nIf the charging pile's state is DC_WAIT_STOP and the discharge voltage is less than 50V or the current is less than 5A, disconnect the DC contactor and judge whether controlling the DC contactor is successful. If it fails and the timer exceeds 2 seconds, this fault will be triggered.\r\nWhen the charging pile's state is DC_CHARGE, the relay status will be monitored in real-time during the charging process. If the relay control fails, this DTC is triggered.",
+        "resolution": "Check if the output relay control circuit or feedback loop is functioning properly. Replace if damaged. Test the opening and closing of the relay through the web."
+    },
+    {
+        "dtc_code": "0x10020A",
+        "description": "DTC_INSULATION_FAULT",
+        "fault reason": "If either the calculated value CalcRp or CalcRn is less than or equal to Standard_R_Err, and if the condition for insulation alarm filtering is met, the insulation alarm filtering counter increments, indicating abnormal insulation. When the insulation alarm filtering counter exceeds 6, an insulation fault is reported. When the voltage is too low and there is no resistance value, it is directly determined that there is no problem with the insulation.",
+        "resolution": "Check if the charging pile input cable, charging gun, and insulation detection board are working properly. Check the insulation resistance values in the log."
+    },
+    {
+        "dtc_code": "0x10020B",
+        "description": "DTC_TERMINAL_LIQUIDLEVEL_WARN",
+        "fault reason": "The float sensor detects float movement, triggering a terminal liquid level alarm.",
+        "resolution": "Drain the liquid from the equipment. If not returned to normal, check if the sensor module is damaged."
+    },
+    {
+        "dtc_code": "0x10020C",
+        "description": "DTC_DOOR_OPEN",
+        "fault reason": "The sensor detects that the terminal door is opened, triggering the travel switch.",
+        "resolution": "Close the door"
+    },
+    {
+        "dtc_code": "0x10020E",
+        "description": "DTC_SLOPE_WARN",
+        "fault reason": "This alarm is triggered when the anti-collision switch status is detected as valid fifty times consecutively within five seconds.",
+        "resolution": "Check the inclination of the equipment. Correct the equipment if it is tilted."
+    },
+    {
+        "dtc_code": "0x10020F",
+        "description": "DTC_METER_ERR",
+        "fault reason": "For communication errors with the meter:\r\n- If it's a self-developed meter (M4_SC), both Type A meters equipped with two guns will default to meter offline.\r\n- If it's not a self-developed meter, during direct current meter initialization, if the meter does not receive valid information within 30 seconds, this error will be reported.\r\n\r\nFor meter data errors:\r\n- If it's not a self-developed meter, after collecting data from the meter twice, if the result of the first collection is greater than the second, or if the result of the second collection exceeds the result of the first collection by 3 kWh, this error will be triggered. (For ABB-Jiandian 2s, collect once; for others, collect every 4s.)\r\n\r\nBoth of these errors will trigger this fault.",
+        "resolution": "Check if the meter communication wiring is correct and inspect the status of the meter itself to ensure it's in good condition."
+    },
+    {
+        "dtc_code": "0x100210",
+        "description": "DTC_CTRLBOARD_COMERR",
+        "fault reason": "1. This error is triggered directly when a connection is not established with the M4 chip upon startup.\r\n\r\n2. Communication status with the M4 chip is determined by heartbeat timeouts. If the time elapsed between the last received M4 heartbeat reply exceeds 3 minutes, it's inferred that the M4 chip is offline, triggering a communication fault with the baseboard.",
+        "resolution": "Check if the RS232 connection to the M4 is correct and if the line status is good. Verify if the versions of A7 and M4 are compatible."
+    },
+    {
+        "dtc_code": "0x100211",
+        "description": "DTC_POWERLOSS",
+        "fault reason": "1. Trigger power failure fault when the voltage of the output pin of the GPIO control unit is completely 0 (UPS scheme). This scheme requires subsequent optimization and filtering.\r\n\r\n2. Use the J2 IO port of the A7 board for detection (super capacitor).",
+        "resolution": "Check the input power and voltage."
+    },
+    {
+        "dtc_code": "0x100212",
+        "description": "DTC_PWRUNIT_COMERR",
+        "fault reason": "Detect and determine the communication status with the rectifier cabinet by using heartbeat timeouts. If the time elapsed between the last received heartbeat reply from the rectifier cabinet exceeds 70 seconds, it's inferred that the rectifier cabinet has timed out, triggering a DTC error code for communication abnormality with the rectifier cabinet.",
+        "resolution": "Check if the A7 of the rectifier cabinet and the terminal A7 are connected to the network cable correctly."
+    },
+    {
+        "dtc_code": "0x100213",
+        "description": "DTC_OVERCUR",
+        "fault reason": "For currents up to 50A, the current should fluctuate within 3A of the required current. If it exceeds this range, it's considered overcurrent. For currents greater than or equal to 50A, the current fluctuation should not exceed 6% of the required current. If it does, it's also considered overcurrent. If the overcurrent condition persists for more than 10 seconds, this error will be triggered.",
+        "resolution": "Output will be stopped. Analyze the logs for further investigation."
+    },
+    {
+        "dtc_code": "0x100214",
+        "description": "DTC_OUTPUT_OVERVOL",
+        "fault reason": "If the required voltage exceeds 150V, and the output voltage is greater than the real-time demand voltage by 5% (for US standard guns) or 10% (for others), it's considered overvoltage. Alternatively, if the output voltage exceeds the maximum vehicle voltage + 80V, it's also considered overvoltage. This error will be triggered after a timer expires (2s).",
+        "resolution": "Output will be stopped. Analyze the logs for further investigation."
+    },
+    {
+        "dtc_code": "0x100216",
+        "description": "DTC_PLCBRD_COMERR",
+        "fault reason": "Trigger this error when executing TskProc if the time elapsed since receiving the heartbeat is equal to or greater than 6 seconds.",
+        "resolution": "Check the RS232 communication between the PLC board and the M4 to ensure the line connection is normal. Use SSH to verify if the SECC process is running."
+    },
+    {
+        "dtc_code": "0x10021C",
+        "description": "DTC_BREAKER_OPEN",
+        "fault reason": "After the main process starts, the main cabinet triggers a circuit breaker trip fault report at most once every 3 seconds (provided that the circuit breaker remains tripped for the entire 3 seconds). This is triggered by the circuit breaker sensor.",
+        "resolution": "Check if the circuit breaker is open."
+    },
+    {
+        "dtc_code": "0x10021E",
+        "description": "DTC_DRAINAGE_TIMEOUT",
+        "fault reason": "If the gun is American or European standard, when the status is DC_DISCHARGE, and the output voltage of the gun exceeds 50V (500 * 0.1) with a timer timeout of 10s, this stop code will be triggered.",
+        "resolution": "Some modules cannot be powered off when offline. Force shutdown and inspect the reason for module offline. Check if the module is damaged."
+    },
+    {
+        "dtc_code": "0x10021F",
+        "description": "DTC_PRECHARGE_TIMEOUT",
+        "fault reason": "Error Cause: If the gun type is American or European standard:\r\n- If the status is in false pre-charge state, and the gun's output voltage is lower than the false pre-charge voltage (if the maximum voltage supported by the vehicle is less than or equal to 500V, the false pre-charge voltage equals the minimum voltage supported by the vehicle; otherwise, when it's greater, the false pre-charge voltage equals the minimum voltage supported by the vehicle plus 50V), and the false pre-charge time, set by a timer of 65s, hasn't reached the specified voltage, the stop code will be triggered.\r\n- If the status is in pre-charge state, and the specified voltage hasn't been reached within the pre-charge time of 65s, the stop code will be triggered.",
+        "resolution": "Check if the gun number is configured correctly. Review the logs to inspect the output voltage."
+    },
+    {
+        "dtc_code": "0x100220",
+        "description": "DTC_GUNCONNECT_BREAK",
+        "fault reason": "Mainly, the SECC receives data processing logic. Receive SECC data processing every 400ms. If the gun is detected as disconnected during the charging process, proceed to notify stoppage and report gun disconnection.",
+        "resolution": "Check if the CP line is connected properly, verify CP voltage, and review the SECC logs."
+    },
+    {
+        "dtc_code": "0x100221",
+        "description": "DTC_FUSE_WARN",
+        "fault reason": "The fuse sensor detects feedback from the fuse, triggering a fault in the separate terminal fuse. (Subsequent optimization needed, including adding filtering.)",
+        "resolution": "Check the status of the fuse and inspect the fuse circuit."
+    },
+    {
+        "dtc_code": "0x100222",
+        "description": "DTC_GUN_UNAVAILABLE",
+        "fault reason": "1. Set the gun to unavailable status when starting firmware download.\r\n2. If any gun is charging and the platform sends \"Inoperative\", set all guns except gun 0 to unavailable status.",
+        "resolution": "Upon receiving the platform's \"Inoperative\" command for a gun, display an information prompt. Confirm that when the gun is disabled in the web interface, selecting \"disable\" renders it unavailable."
+    },
+    {
+        "dtc_code": "0x100224",
+        "description": "DTC_CONNECTORTAIL_OVERTEMP",
+        "fault reason": "1. When the liquid cooling mode is HPC liquid cooling cabinet, respectively detect the positive and negative temperatures of the two guns. If the detected values for both positive and negative temperatures of each gun are above 90 degrees and below 100 degrees (offset values before conversion are above 150 and below 160 degrees), this error will be triggered.\r\n\r\n2. When the liquid cooling mode is SC liquid cooling cabinet, respectively detect the temperatures of the two sensors corresponding to each gun. If the detected values for both sensors of each gun are above 90 degrees and below 100 degrees (offset values before conversion are above 150 and below 160 degrees), this error will be triggered.",
+        "resolution": "Resolve the issue causing liquid cooling abnormalities and wait for the gun temperature to recover. Check the temperature values of the guns and the duration of the abnormality."
+    },
+    {
+        "dtc_code": "0x100226",
+        "description": "DTC_CONVERSE_ERR",
+        "fault reason": "When the charging pile status is between DC_EVPARA_GET and DC_CHARGE (including both states), the following conditions are checked:\r1. For the new type of insulation detection board:\r- If there are three consecutive detections indicating incorrect connections and low voltage, it's considered a reverse connection error.\r2. For non-new type connections:\r- If there's an incorrect connection and low voltage status, and the charging pile status is after insulation, it's considered a battery reverse connection.\rIf either of these conditions occurs more than 10 times, it triggers this stop code.",
+        "resolution": "Check if the insulation detection board of the equipment is reverse connected."
+    },
+    {
+        "dtc_code": "0x200002",
+        "description": "DTC_MDLERR",
+        "fault reason": "After AC closure, the main cabinet checks the power module alarm and fault status at most every 50ms + 100ms. If any module is offline, it triggers a warning.",
+        "resolution": "Check if the power module has a fault red light. Investigate the cause of the module fault and replace the power module. Check if the module is receiving power."
+    },
+    {
+        "dtc_code": "0x200003",
+        "description": "DTC_PDUERR",
+        "fault reason": "Upon CAN reporting of PDU address conflict error, A7 updates the PDU status. After the process startup initialization, the main cabinet triggers PDU status check at most every 50ms + 100ms. If the current PDU has an address conflict, it reports DTC_PDUERR.",
+        "resolution": "Check if the PDU control board address is set to conflict. If so, restore the default address setting."
+    },
+    {
+        "dtc_code": "0x200004",
+        "description": "DTC_PDUCOMM",
+        "fault reason": "After 30 seconds of PDU offline, set it to an offline status. After the process startup initialization, the main cabinet triggers PDU communication fault detection and reporting at most every 50ms + 100ms. If any PDU is offline, an error is reported.",
+        "resolution": "First, check if the rectifier cabinet's PDU is working properly by observing if the heartbeat light is blinking (with a periodic blink cycle). Then, check if the PDU communication light is blinking frequently. Check if the PDU control board has crashed. Finally, verify if the CAN line is properly connected."
+    },
+    {
+        "dtc_code": "0x200007",
+        "description": "DTC_STORAGE",
+        "fault reason": "After AC closure, the main cabinet checks the SD card access at most every 50ms + 100ms. It determines if there's an SD card fault, indicating it's either inaccessible or not inserted.",
+        "resolution": "Check the status of the SD card at the terminal end, including its existence and whether it's in read-only mode. Inspect if the terminal control board is faulty. You can check the SD card node using the command \"mount\" through SSH to 192.168.1.136."
+    },
+    {
+        "dtc_code": "0x20000A",
+        "description": "DTC_HEARTOVERTIME",
+        "fault reason": "After AC closure, if there's a 70s heartbeat message timeout or a 15s charging message timeout, it triggers an error. Communication failure between the terminal and the rectifier cabinet's A7 can occur due to reasons such as unplugged or loose network cable, terminal process crash, etc.",
+        "resolution": "1. SSH check if the terminal process has crashed, if there are core files, investigate the crash reason (whether the configuration file is correct), delete the core files, and restart the process.\r\n2. Check if the Ethernet cable is properly inserted and if the Ethernet port data light is blinking normally.\r\n3. Check if the A7 board is powered on normally.\r\n4. Check if the A7 dip switches are in programming mode."
+    },
+    {
+        "dtc_code": "0x200103",
+        "description": "DTC_FANCOMM",
+        "fault reason": "After 3 minutes of the fan being offline, update the fan's offline status. After AC closure, the main cabinet triggers fan communication judgment and reports faults at most every 10 seconds.",
+        "resolution": "Check if the fan is powered on."
+    },
+    {
+        "dtc_code": "0x200202",
+        "description": "DTC_PWRUNIT_EMERGENCYSTOP",
+        "fault reason": "After AC closure, the main cabinet triggers an emergency stop fault report at most every 3 seconds (provided the emergency stop button has been continuously pressed for 3 seconds). Once the emergency stop button is pressed, the AC will immediately disconnect according to electrical logic.",
+        "resolution": "Release the emergency stop button once the situation is resolved, or check if the emergency stop button wiring is normal, as it may cause false triggering."
+    },
+    {
+        "dtc_code": "0x200203",
+        "description": "DTC_PWRUNIT_LIQUIDLEVEL_WARN",
+        "fault reason": "After AC closure, the main cabinet triggers a power cabinet liquid level alarm fault judgment at most every 3 seconds. However, if the liquid level float is lifted, the AC will immediately disconnect.",
+        "resolution": "Drain the water from the equipment. If normal operation is not restored, inspect the sensor module for damage and replace the liquid level sensor."
+    },
+    {
+        "dtc_code": "0x200206",
+        "description": "DTC_OVERVOL",
+        "fault reason": "After AC closure, the main cabinet triggers input overvoltage fault judgment at most every 50ms + 100ms. The A7 receives AC line voltage data from the module. If the AC input voltage remains higher than the set voltage for 5 seconds, an error is reported and the AC input status is updated to overvoltage.",
+        "resolution": "Check if the three-phase input voltage exceeds the threshold value. This parameter can be adjusted in the web interface."
+    },
+    {
+        "dtc_code": "0x200208",
+        "description": "DTC_UNDERVOL",
+        "fault reason": "After AC closure, the main cabinet triggers input undervoltage fault judgment at most every 50ms + 100ms. The A7 receives AC line voltage data from the module. If the AC input voltage remains below the set voltage for 5 seconds, an error is reported and the AC input status is updated to undervoltage.",
+        "resolution": "Check if the three-phase input voltage is lower than the threshold value. This parameter can be adjusted in the web interface."
+    },
+    {
+        "dtc_code": "0x200209",
+        "description": "DTC_PWRUNIT_CIRCUITBREAKER_ERR",
+        "fault reason": "After the main process starts, the main cabinet triggers a circuit breaker tripping fault report at most every 3 seconds (provided the circuit breaker has been continuously in the tripped state for 3 seconds). Once the circuit breaker trips, the AC will immediately disconnect according to electrical logic. The circuit breaker sensor triggers this fault.",
+        "resolution": "Check the status of the molded-case circuit breaker and close it. If the fault persists, then check if the circuit breaker feedback is faulty."
+    },
+    {
+        "dtc_code": "0x20020B",
+        "description": "DTC_IMPACT",
+        "fault reason": "After AC closure, the main cabinet triggers a tilt alarm fault report at most every 3 seconds (provided the tilt state has been continuously present for 3 seconds). Once the tilt sensor is triggered, the AC will immediately disconnect according to electrical logic. (Note: During testing, continuous tilting of the rectifier cabinet's tilt sensor caused the AC to continuously open and close.)",
+        "resolution": "Check if the tilt angle of the rectifier cabinet is too large and correct it. Check if the tilt sensor is wired properly, and if faulty, replace the tilt sensor."
+    },
+    {
+        "dtc_code": "0x20020E",
+        "description": "DTC_MDLCOMM_ALL",
+        "fault reason": "After AC closure, 20 seconds later, the main cabinet triggers a power module communication fault judgment at most every 100ms + 50ms. If three consecutive judgments determine that all modules are offline (approximately 350ms), an error is triggered.",
+        "resolution": "1. After AC closure, check if all modules are powered on properly.\r\n2. Next, verify if the power module addresses are correctly set.\r\n3. Then, check if the CAN communication lines are connected properly.\r\n4. Finally, inspect if any modules have faults. If you reach this step, it indicates a significant issue."
+    },
+    {
+        "dtc_code": "0x20020F",
+        "description": "DTC_SURGE",
+        "fault reason": "After AC closure, the main cabinet triggers an input surge protection fault report at most every 13 seconds. However, if the surge protection is breached, the AC will immediately disconnect according to electrical logic.",
+        "resolution": "Check if the surge protection device is damaged. If it is, replace the hardware. Additionally, inspect the surge protection device wiring to ensure it is connected properly."
+    },
+    {
+        "dtc_code": "0x300101",
+        "description": "DTC_OVER_TEMP_WARNING",
+        "fault reason": "For HPCCooler:\r\n- Every 200ms, A7 receives a response regarding the liquid cooling status.\r\n- It retrieves the temperature of the liquid-cooled gun head, return liquid positive temperature, and return liquid negative temperature.\r\n- If the return liquid positive or negative temperature, or the gun temperature, is greater than 83 degrees and less than 95 degrees, and exceeds the last cached temperature value (indicating a rising trend in temperature), it triggers a liquid cooling device overheating alarm.\r\n\r\nFor SCCooler:\r\n- Every 200ms, A7 receives a response regarding the liquid cooling status.\r\n- It retrieves the temperature of the liquid-cooled gun head and return liquid positive temperature.\r\n- If the return liquid positive temperature or the gun temperature is greater than 83 degrees and less than 95 degrees, and exceeds the last cached temperature value (indicating a rising trend in temperature), it triggers a liquid cooling device overheating alarm.",
+        "resolution": "Check if the liquid cooling fan is operating normally, and consider implementing additional cooling measures such as:\r\n\r\n1. Increasing airflow by adding more fans or improving ventilation.\r\n2. Using heat sinks or heat pipes to dissipate heat more effectively.\r\n3. Ensuring proper airflow direction and clearance around heat-generating components.\r\n4. Implementing liquid cooling solutions with higher efficiency or capacity.\r\n5. Monitoring and controlling system temperatures to prevent overheating.\r\n\r\nBy implementing these measures, you can enhance the cooling efficiency of the liquid cooling system and mitigate the risk of overheating."
+    }
+]

@@ -1,0 +1,204 @@
+0x100001,	REASON_HARD_RESET               	,硬件复位 	,Hardware reset	,Charger,	N/A	
+0x100002,	REASON_POWER_LOSS               	,掉电 	,Power loss	,Charger,	N/A	,Check the power supply
+0x100003,	REASON_REBOOT                   	,重启 	,Reboot	,Charger,	N/A	,
+0x100004,	REASON_EMERGENCYSTOP            	,终端急停停止 	,Terminal emergency stop is pressed	,Charger,	急停按钮被按下	,Check whether the terminal emergency stop button is pressed
+0x100005,	REASON_METER_COMERR	,电表通信故障 	,Meter communication fault	,Charger,	30s没有收到电表有效数据	,Check the communication between the meter and M4board
+0x100006,	REASON_A7_COMERR                	,与主板通信故障 	,Communication fault with mainboard	,Charger,	80s没有收到A7的数据	,Check the communication between A7 and M4board
+0x100007,	REASON_CARDREADER_ERR           	,读卡器故障 	,Cardreader offline	,Charger,	初始化30s通讯不成功	,Check the communication between the cardreader and A7
+0x100008,	REASON_GROUND_FAILURE           	,接地故障 	,Ground fault	,Charger,	读取到绝缘板子的接地错误	,Check the ground connection of the terminal
+0x100009,	REASON_OVER_TEMP                	,枪过温故障 	,Cable connector over-temperature  fault	,Charger,	温度大于设定值（20次防抖）并且使能（默认使能）	,Check whether the connector is damage
+0x10000A,	REASON_INSULATION_FAILURE       	,绝缘故障 	,Inuslation fault	,Charger/Vehicle,	连续6次绝缘电阻小于100欧姆每伏	,Check the ground connection
+0x10000B,	REASON_METER_DATA_ERR           	,电表数据异常 	,Meter data error	,Charger,	电表当前电量小于上次电量值或者两次差值大于300三次及以上	
+0x10000C,	REASON_DOOR                     	,门开故障 	,Terminal door open	,Charger,	门被打开	,Check whether the terminal door is open
+0x10000D,	REASON_RELAY_ERR                	,继电器故障 	,Relay error	,Charger,	继电器反馈状态和设置状态不一致	,Check whether the relay is damage
+0x10000E,	REASON_LOCK_FAILURE             	,解锁故障 	,Gun lock control fault	,Charger,	N/A	
+0x10000F,	REASON_INSULATION_ERROR         	,绝缘检测板故障 	,Insulation board fault	,Charger,	读到绝缘监测板有错误	,Check the insulation board and the ground connection
+0x100010,	REASON_INSULATION_COMERR        	,绝缘检测板通信故障	,Insulation board offline	,Charger,	10s未收到绝缘监测板的消息	,Check the communication between the insulation board and  M4board
+0x100011,	REASON_ESBUTTON_ERR             	,主A7急停故障 	,Mainboard emergency stop is pressed	,Charger,	急停按钮被按下	
+0x100012,	REASON_SUBBOARD_OFFLINE         	,底板离线异常停止 	,Sub-board offline	,Charger,	A7板与M4板心跳超时	
+0x100013,	REASON_DISCHARGE_OVERTIME       	,泄放超时 	,Discharge over-time	,Charger,	10s泄放超时	,Check power modules
+0x100014,	REASON_FAKEPRECHARGE_OVERTIME   	,预充超时 	,Precharge over-time	,Charger,	65s预充超时	,Check power modules
+0x100015,	REASON_SURGE                    	,浪涌保护 	,Terminal input surge protection alarm	,Charger,	N/A	
+0x100016,	REASON_PLCBOARD_OFFLINE         	,PLC板子离线 	,PLC board offline	,Charger,	6s通信超时	,Check the communication between the PLC board and M4board
+0x100017,	REASON_SLANT_WARN               	,撞击告警 	,Impact warning	,Charger,	倾倒传感器触发	,Check the inclination sensor in the terminal
+0x100018,	REASON_WATERLEVEL_WARN          	,液位故障 	,Terminal liquid level alarm	,Charger,	液位传感器触发	,Check the liquid level sensor in the terminal
+0x100019,	REASON_SURROUNDING_OVERTEMP     	,环境过温故障 	,Air over-temperature alarm	,Charger,	N/A	,Check the dust-proof cotton in the terminal
+0x10001A,	REASON_ACSURROUNDING_COMERR     	,AC充电主板离线故障	,Communication fault with AC-subboard	,Charger,	N/A	
+0x10001B,	REASON_PAUSE                    	,暂停	,Pause	,Charger,	N/A	
+0x10001C,	REASON_FUSE_ERR                 	,分体终端熔断器故障	,Terminal fuse alarm	,Charger,	N/A	
+0x10001D,	REASON_TAILOVER_TEMP            	,液冷枪枪尾过温	,The end of the liquid cooled gun is  too warm	,Charger,	枪温超过设定值	
+0x10001E,	REASON_FUSE_OPEN	,检测熔断器断路	,Open circuit of fuse	,Charger,	N/A	
+0x10001F,	REASON_APS_CTRLERR 	,辅助电源控制故障	,Auxiliary power control fault	,Charger,	N/A	,Check auxiliary power wiring
+0x100020,	REASON_OUTPUTRELAY_CTRLERR        	,输出继电器控制故障 	,Output relay control fault	,Charger,	N/A	,Check whether the connection of the relay control line is  normal
+0x100021,	REASON_HUMIDITY_WARN               	,高湿度告警	,High humidity alarm	,Charger,	N/A	,Check if the local humidity exceeds the standard
+0x100022,	REASON_RCD_WARN                    	,RCD告警 	,RCD warm/fault	,Charger,	N/A	,Check the AC input power/RCD module
+0x100023,	REASON_BREAKER_OPEN               	,断路器断开	,Breaker off	,Charger,	N/A	,Check Breaker
+0x100024,	REASON_GUN_UNAVAILABLE        	,枪不可用	,Gun unavailable	,Charger,	N/A	,Check gun sts
+0x100025,	REASON_TRIAL_OUTTIME               	,产品试用期结束 	,Expiration of product trial period	,Charger,	N/A	Contact sales to activate
+0x100026,	REASON_INSULATION_SELFCHECKERR	,绝缘检测自检失败	,Insulation self-check fault	,Charger,	绝缘监测板自检失败	,Check the insulation board and the ground connection
+0x100027,	REASON_CP_ERR	,CP 故障	,CP Connect Error	,Charger,	N/A	
+0x100028,	REASON_CP_CONNECT_ERR	,枪线错误	,The wire of Gun error	,Charger,	N/A	
+0x100029,	REASON_LED_BOARD_COMERR	,与灯板通讯故障	,Communication fault  with LED Board	,Charger,	N/A	
+0x10002A,	REASON_LCD_COMERR	,屏幕通讯故障	,Communication fault  with LCD	,Charger,	N/A	
+0x10002B,	REASON_OVER_TEMP_CORE_BOAED	,核心板过温	,Over-temperature  fault with core board	,Charger,	N/A	
+0x10002C,	REASON_OVER_TEMP_RELAY	,继电器板过温	,Over-temperature  fault with relay	,Charger,	N/A	
+0x10002D,	REASON_CP_12V_ERR	,CP -12V故障	,CP-12V ERROR	,Charger,	N/A	
+0x10002E,	REASON_NO_EFFECTIVE_CURRENT	,无有效电流（充电二十分钟无电流）	,No effective current	,Charger,	N/A	
+0x10002F,	DTC_ROTATION_ERR	,相序错误	,ROTATION ERROR	,Charger,	N/A	
+0x100030,	DTC_LN_REVERSE_ERR	,LN反向故障	,LN reverse fault	,Charger,	N/A	
+0x100031,	DTC_OUTPUT_SHORT_ERR	,输出短路故障	,Output short-circuit fault	,Charger,	N/A	
+0x100032,	DTC_THIRD_PARTY_OFFLINE	,第三方设备离线故障	,Third-party device offline	,Charger,	N/A	
+0x100101,	REASON_EV_DISCONNECTED          	,枪连接断开 	,EV disconnected	,Charger/Vehicle,	检测到枪断开连接	,Check whether the connector is attrited
+0x100102,	REASON_EV_ERR                   	,汽车通信故障 	,EV communication fault	,Charger/Vehicle,	车端有故障码且不是充满电	,Check Vehicle's BMS
+0x100103,	REASON_EV_PARAGET_OVERTIME      	,获取车端信息超时 	,EV parameters get overtime	,Charger/Vehicle,	在60s内没有获取到车端参数	,Check Vehicle's BMS
+0x100104,	REASON_EVSE_PARARES_OVERTIME    	,桩端信息PLC回复超时	,PLC communication timeout	,Charger/Vehicle,	PLC消息回复60s超时	,Check Vehicle's BMS
+0x100105,	REASON_PARAMETERS_NOT_MATCHING  	,充电参数不匹配 	,Charge parameters dismatch	,Charger/Vehicle,	车端发过来的车辆信息最大电压小于桩端的最小电压 车端发过来的车辆信息需求电压小于桩端的最小电压或大于桩端的最大电压 输出电压大于最大电压+10v请求电流大于最大输出电流	,Check Vehicle's BMS
+0x100106,	REASON_EV_NOT_READYTOCHARGE     	,车端未准备就绪 	,EVCC is not ready	,Charger/Vehicle,	EVCC回复没有准备好或者车充满停止	,Check Vehicle's BMS
+0x100107,	REASON_CHARGINGPOWER_IS_REACHED 	,达到设置充电电量停止 	,Stop when the set charging power is reached	,Charger/Vehicle,	充电电量到达平台设定值	
+0x100108,	REASON_CHARGINGTIME_IS_REACHED  	,达到设置充电时长停止 	,Stop when the set charging time is reached	,Charger/Vehicle,	充电时间到达平台设定值	
+0x100109,	REASON_EV_STOP_CHARGING	,车端主动停止充电	,The vehicle actively stops charging	,Vehicle	,N/A	
+0x100201,	REASON_LOCAL                    	,本地 	,Local	,Charger,	正常停止充电	,Check Vehicle's BMS
+0x100202,	REASON_OTHER                    	,其他 	,Other reasons	,Charger,	启动失败	
+0x100203,	REASON_REMOTE                   	,远程停止 	,Remotely stop	,Charger,	收到OCPP停止或者解锁消息	
+0x100204,	REASON_SOFT_RESET               	,软件复位 	,Soft reset	,Charger,	重新上电，充电流程初始化	
+0x100205,	REASON_UNLOCKCOMMAND            	,解锁命令 	,Unlock command	,Charger,	N/A	
+0x100206,	REASON_DEAUTHORIZED             	,认证不通过 	,Deauthorized	,Charger,	N/A	
+0x100207,	REASON_OVER_VOL	,过压故障 	,Output over-voltage fault	,Charger,	1.输出电压大于实时需求电压10%判定为过压  2.输出电压大于车端最大电压判断为过压 3.时间>2s	
+0x100208,	REASON_UNDER_VOL                	,欠压故障 	,Output under-voltage fault	,Charger,	N/A	
+0x100209,	REASON_OVER_CUR                 	,过流故障 	,Output over-current fault	,Charger,	输出电流大于需求电流3A(50A以内) 6%(50A以上)	
+0x10020A,	REASON_LOCAL_CONFLICT           	,列表冲突 	,Local list conflict	,Charger,	N/A	
+0x10020B,	REASON_WEBSCREEN_STOP           	,web屏幕停止 	,Web/Screen stop	,Charger,	N/A	
+0x10020C,	REASON_CARD_STOP                	,刷卡停止 	,Card stop	,Charger,	刷卡停止	
+0x10020D,	REASON_EVSE_PARAGET_OVERTIME    	,获取桩端信息超时 	,EVSE parameters get overtime	,Charger,	M4给A7发送车端数据大于5s，尝试12次	,Check Vehicle's BMS
+0x10020E,	REASON_PILOT_RECONNECT          	,重新插枪 	,Pilot need to be reconnected	,Charger/Vehicle,	N/A	
+0x10020F,	REASON_PWRUNIT_OFFLINE          	,整流柜离线 	,Power cabinet offline	,Charger,	整流柜15s超时离线	,Check the network cable between the terminal and power cabinet
+0x100211,	REASON_TERMINAL_SURGE_ERR	,终端浪涌保护告警	,Terminal input surge protection alarm	,Charger,		
+0x200001,	REASON_PWRUINT_EMERGENCY_STOP  	,功率柜急停故障 	,Power cabinet emergency stop is pressed	,Charger,	急停按钮被按下	,Check whether the power cabinet emergency stop button is  pressed
+0x200002,	REASON_PWRUINT_WATERLEVEL_WARN 	,功率柜液位告警 	,Power cabinet liquid level alarm	,Charger,	液位传感器触发	,Check the liquid level sensor in the power cabinet
+0x200003,	REASON_PWRUINT_DOOR            	,功率柜门打开 	,Power cabinet door open	,Charger,	门被打开	,Check whether the power cabinet door is open
+0x200004,	REASON_PWRUINT_BREAKER         	,断路器脱扣 	,Circuit breaker disconnected	,Charger,	断路器传感器触发	,Check whether the circuit breaker in power cabinet is damage
+0x200005,	REASON_PWRUINT_PDUCTRL_ERR     	,PDU继电器控制故障 	,PDU relay control fault	,Charger,	PDU控制反馈异常	,Check whether the PDU relay is damage
+0x200006,	REASON_PWRUINT_PDUCOM_ERR      	,PDU通信故障 	,PDU communication fault	,Charger,	PDU通信异常	,Check the CAN communication between the PDU and PDU control  board
+0x200007,	REASON_PWRUINT_MODULE_COMERR   	,电源模块通信故障 	,Power module communication fault	,Charger,	模块上电等待10s没有模块在线	,Check the CAN communication between the power module and A7 in  power cabinet
+0x200008,	REASON_PWRUINT_INPUT_RELAY_ERR 	,输入继电器控制故障 	,Input relay control fault	,Charger,	N/A	,Check whether the input relay in power cabinet is damage
+0x200009,	REASON_PWRUINT_PDUCAL_FAULT    	,功率分配故障 	,Power policy fault	,Charger,	功率分配失败	
+0x20000A,	REASON_PWRUINT_PDUSWITCH_OVERTIME	,功率切换超时停止 	,Power switch overtime fault	,Charger,	切入切除15s超时	
+0x20000B,	REASON_PWRUINT_SURGE           	,浪涌保护 	,Power cabinet input surge protection alarm	,Charger,	N/A	
+0x20000C,	REASON_PWRUINT_SMOKE           	,烟雾报警 	,Power cabinet smoke alarm	,Charger,	烟雾传感器触发	
+0x20000D,	REASON_PWRUINT_PWRERR                    	,功率控制输出异常 	,Power control output fault	,Charger,	N/A	,Check whether the power control board is faulty
+0x20000E,	REASON_PWRUINT_OUTSHORT                  	,输出短路 	,Output short circuit	,Charger,	N/A	,Check the output for short circuit
+0x20000F,	REASON_PWRUINT_PDUHIGHTEMP_ERR	,PDU过温故障	,PDU overtemperature fault	,Charger,	PDU温度大于60℃	,Check the PDU temperature
+0x200101,	REASON_PWRUINT_TERMINALHERAT_OVERTIME	,终端心跳报文超时停止 	,Terminal heart frame overtime	,Charger,	心跳70s超时	
+0x200102,	REASON_PWRUINT_TERMINALCHGRES_OVERTIME	,终端充电报文超时停止 	,Terminal charging frame overtime	,Charger,	充电报文15s超时	
+0x200200,	REASON_PWRUINT_MODULE_ERR	,电源模块故障	,Power supply module failure	,Charger,	模块出现过压、欠压、PFC、DC故障等	,Check power modules
+0x200201,	REASON_PWRUINT_MODULE_HIGHTEMP          	,电源模块温度过高 	,Power module over-temperature	,Charger,	枪对应的模块过温故障	,Check power modules
+0x200202,	REASON_PWRUINT_MODULE_INTERNALERR       	,电源模块内部故障	,Power module fault	,Charger,	枪对应的模块内部故障	,Check power modules
+0x200203,	REASON_PWRUINT_MODULE_FANERR            	,电源模块风扇故障 	,Power module fan fault	,Charger,	枪对应的模块风扇故障 	,Check power modules
+0x200204,	REASON_PWRUINT_INPUT_UNDERVOL           	,电源模块输入欠压 	,Power module input under-voltage fault	,Charger,	AC进线电压低于设定电压	,Check power modules
+0x200205,	REASON_PWRUINT_INPUT_OVERVOL            	,电源模块输入过压 	,Power Module input over-voltage fault	,Charger,	AC进线电压高于设定电压	,Check power modules
+0x200206,	REASON_PWRUINT_MODULE_PFC_FAULT         	,电源模块PFC故障 	,Power module PFC fault	,Charger,	枪对应的模块PFC故障 	,Check power modules
+0x200207,	REASON_PWRUINT_MODULE_DCDC_FAULT        	,电源模块DCDC故障 	,Power module DC-DC fault	,Charger,	枪对应的模块DCDC故障 	,Check power modules
+0x200208,	REASON_PWRUINT_MODULE_OUTPUT_FUSE       	,电源模块输出熔丝熔断 	,Power module output fuse fault	,Charger,	枪对应的模块输出熔丝熔断 	,Check power modules
+0x200209,	REASON_PWRUINT_MODULE_INPUT_FUSE        	,电源模块输入熔丝熔断 	,Power module inputput fuse fault	,Charger,	枪对应的模块输入熔丝熔断 	,Check power modules
+0x20020A,	REASON_PWRUINT_MODULE_OVERPOWER         	,电源模块输出功率过高 	,Power module output over-power	,Charger,	枪对应的模块输出功率过高 	,Check power modules
+0x20020B,	REASON_PWRUINT_MODULE_OUTPUT_HIGHVOL    	,电源模块输出过压 	,Power module output over-voltage	,Charger,	N/A 	,Check power modules
+0x20020C,	REASON_PWRUINT_MODULE_OUTPUT_UNDERVOL   	,电源模块输出欠压 	,Power module output under-voltage	,Charger,	N/A 	,Check power modules
+0x20020D,	REASON_PWRUINT_MODULE_HARDWARE_FAULT    	,电源模块硬件故障 	,Power module hardware fault	,Charger,	枪对应的模块硬件故障 	,Check power modules
+0x20020E,	REASON_PWRUINT_SLANT_WARN               	,倾斜故障 	,The impact failure	,Charger,	倾倒传感器触发	
+0x20020F,	REASON_PWRUINT_FUSING_WARN              	,熔断器报警  	,Fusing warning	,Charger,	IO_VIN6为高电平	
+0x200210,	REASON_PWRUINT_MODULE_ALLCOMMERR	,所有电源模块通信故障	,All power module communication fault	,Charger,	交流接触器吸合后，所有模块通信故障	,Check power modules and can communication
+0x200211,	REASON_PWRUINT_SELF_CHECK	,功率柜在自检中	,Power cabinet is in self-test	,Charger,	按三下急停触发自检	
+0x200212,	REASON_PWRUINT_UPDATING	,功率柜在升级中	,Power cabinet is being upgraded	,Charger,	Web提交升级包	
+0x200213,	REASON_PWEUINT_DEBUG	,功率柜在调试中	,Power cabinet is being debugged	,Charger,	Web设置调试模块	
+0x200214,	REASON_PWRUINT_SURGE	,浪涌保护	,Power cabinet input surge protection alarm	,Charger,		
+0x300000,	REASON_FAN_MODULE_CTRL_ERR	,功率控制风扇故障	,Power control fan failure	,Charger,	N/A	
+0x300001,	REASON_HPCCOOLER_FAULT          	,液冷设备故障 	,HPC cooler fault	,Charger,	N/A	,Check whether the cooler uint is damage
+0x300002,	REASON_HPCCOOLERDOOR_FAULT      	,液冷柜门开故障  	,HPC cooler door open	,Charger,	N/A	
+0x300003,	REASON_HPCCOOLER_PIPE_JAM_ERR	,管道堵塞 	,HPC-cooler pipe jam	,Charger,	N/A	,Check the liquid cooling equipment
+0x300004,	REASON_HPCCOOLER_PUMP_ERR    	,液泵故障 	,HPC-cooler pump failure	,Charger,	N/A	,Check the liquid cooling equipment
+0x300005,	REASON_HPCCOOLER_SHORTAGE_ERR	,缺液报警 	,HPC-cooler liquid shortage alarm	,Charger,	N/A	,Check the liquid cooling equipment
+0x300006,	REASON_HPCCOOLER_OIL_PUMP_ERR	,油泵故障	,HPC-cooler oil pump failure	,Charger,	N/A	,Check the liquid cooling equipment
+0x400001,	REASON_AC_LOCK_CTRL_ERR      	,AC电子锁控制故障	,AC electronic lock control is faulty	,Charger,	N/A	
+0x400002,	REASON_LEAKAGE_DETECTION_ERR      	,AC漏电检测故障停止	,AC leakage detection fault	,Charger,	N/A	
+0x800000,	GBT_STOP_CASE_OK	,默认 	,default			
+0x800001,	GBT_STOP_CASE_EXTERN	,外部发起停止 	,Externally initiated  stop			
+0x800002,	GBT_STOP_CASE_BMS_SOC_OVER	,SOC充满-BMS主动终止	,SOC full -BMS active termination			
+0x800003,	GBT_STOP_CASE_PILE_SOC_OVER	,SOC充满-桩主动终止	,SOC filled - pile active termination			
+0x800004,	GBT_STOP_CASE_1INPUT_OVER_VOL	,充电机1#输入过压	,Charger, 1# input overvoltage			
+0x800005,	GBT_STOP_CASE_1INPUT_LOW_VOL	,充电机1#输入欠压	,Charger, 1# input undervoltage			
+0x800006,	GBT_STOP_CASE_2INPUT_OVER_VOL	,充电机2#输入过压	,Charger, 2# input overvoltage			
+0x800007,	GBT_STOP_CASE_2INPUT_LOW_VOL	,充电机2#输入欠压	,Charger, 2# input undervoltage			
+0x800008,	GBT_STOP_CASE_INS_VOLT_ENABLE	,绝缘检测时20S内电压未升至绝缘电压	,During the insulation test, the voltage within 20S does not rise to the insulation voltage			
+0x800009,	GBT_STOP_CASE_OUTVOL_OVER_BCL	,充电机输出电压>BCL需求电压	,Output voltage of charger &gt; BCL requires voltage			
+0x80000A,	GBT_STOP_CASE_OUTCUR_OVER_BCL	,充电机输出电流>BCL需求电流	,Output current of charger &gt; BCL demand current			
+0x80000B,	GBT_STOP_CASE_OUTVOL_OVER_BCP	,充电机输出电压>BCP中最高允许充电电压	,Output voltage of charger &gt; Maximum allowable charging voltage in BCP			
+0x80000C,	GBT_STOP_CASE_OUTCUR_OVER_BCP	,充电机输出电流>BCP中最高允许充电电流	,Output current of charger &gt; Maximum allowable charging current in BCP			
+0x80000D,	GBT_STOP_CASE_BHMMAX_LOW_PILEMIN	,BHM最高允许充电电压小于充电机最小输出电压	,The maximum allowable charging voltage of the BHM is less than the minimum output voltage of the charger			
+0x80000E,	GBT_STOP_CASE_BHMMAX_OVER_PILEMAX	,BHM最高允许充电电压大于充电机最大输出电压	,The maximum allowable charging voltage of the BHM is greater than the maximum output voltage of the charger			
+0x80000F,	GBT_STOP_CASE_BCPMAX_LOW_PILEMIN	,BCP最高允许充电电压小于充电机最小输出电压	,The maximum allowable charging voltage of BCP is less than the minimum output voltage of the charger			
+0x800010,	GBT_STOP_CASE_BCPVOL_NOMATCH_PILE	,BCP中电压不在充电机范围内	,The voltage in the BCP is not within the range of the charger			
+0x800011,	GBT_STOP_CASE_BCPVOL_NOMATCH_BHM	,BCP中最高允许电压与BHM电压不一致	,The maximum allowable voltage in the BCP is different from that in the BHM			
+0x800012,	GBT_STOP_CASE_BCLVOL_OVER_BCP	,BCL中电压需求大于BCP中最高允许充电总电压	,The voltage requirement in BCL is greater than the maximum allowable total charging voltage in BCP			
+0x800013,	GBT_STOP_CASE_BCLCUR_OVER_BCP	,BCL中电流需求大于BCP中最高允许充电总电流	,The current demand in BCL is greater than the maximum allowable total charging current in BCP			
+0x800014,	GBT_STOP_CASE_BEM_CRM00_TIMEOUT	,BEM中CRM00超时	,CRM00 timed out in the BEM. Procedure			
+0x800015,	GBT_STOP_CASE_BEM_CRMAA_TIMEOUT	,BEM中CRMAA超时	,CRMAA timed out in the BEM. Procedure			
+0x800016,	GBT_STOP_CASE_BEM_CTSCML_TIMEOUT	,BEM中CTSCML超时	,CTSCML timed out in the BEM			
+0x800017,	GBT_STOP_CASE_BEM_CRO_TIMEOUT	,BEM中CRO超时	,CRO timed out in the BEM			
+0x800018,	GBT_STOP_CASE_BEM_CDC_TIMEOUT	,BEM中CDC超时	,The CDC timed out in the BEM			
+0x800019,	GBT_STOP_CASE_BEM_CCD_TIMEOUT	,BEM中CCD超时	,CCD timed out in the BEM. Procedure			
+0x80001A,	GBT_STOP_CASE_BST_REACH_TOTVOLT	,BST中达到总电压设定值	,The total voltage set is reached in BST			
+0x80001B,	GBT_STOP_CASE_BST_REACH_SINVOLT	,BST中达到单体电压设定值	,The set value of the single voltage is reached in the BST			
+0x80001C,	GBT_STOP_CASE_BVM_TIMEOUT	,BVM超时	,BVM timeout			
+0x80001D,	GBT_STOP_CASE_BDC_TIMEOUT	,BDC超时	,BDC timeout			
+0x800065,	GBT_STOP_CASE_MORE10V	,外部电压过高	,External overvoltage			
+0x800066,	GBT_STOP_CASE_MISMATCH	,输出能力不匹配	,The output capacity  does not match			
+0x800067,	GBT_STOP_CASE_VOLTIME	,模块升压失败	,Module boost failed.  Procedure			
+0x800068,	GBT_STOP_CASE_RELAY_ADH	,主回路继电器故障(粘连)	,Main loop relay  failure (adhesion)			
+0x800069,	GBT_STOP_CASE_INSU	,绝缘故障	,Insulation fault			
+0x80006A,	GBT_STOP_CASE_DISCHARGE	,泄放故障/超时	,Bleed failure/timeout			
+0x80006B,	GBT_STOP_CASE_PREVOL	,预充电压不匹配	,Precharge voltage  mismatch			
+0x80006C,	GBT_STOP_CASE_BATVOL	,充电机输出能力不匹配	,The output capacity  of the charger does not match			
+0x80006D,	GBT_STOP_CASE_SHORT	,输出短路	,Output short circuit			
+0x80006E,	GBT_STOP_CASE_BRM_OVER	,BRM报文接收超时	,The BRM packet  received timed out			
+0x80006F,	GBT_STOP_CASE_BCP_OVER	,BCP报文接收超时	,The BCP packet  received timed out			
+0x800070,	GBT_STOP_CASE_BRO00_OVER	,BRO00报文接收超时	,BRO00 Packet  receiving times out			
+0x800071,	GBT_STOP_CASE_BROAA_OVER	,BROAA报文接收超时	,The BROAA packet  received timed out			
+0x800072,	GBT_STOP_CASE_BRO_ERR	,车辆准备就绪失败(先发AA再发00)	,Vehicle readiness  failure (start AA and then start 00)			
+0x800073,	GBT_STOP_CASE_BEM_CRM00	,BEM中CRM00超时终止	,The CRM00 timeout  terminates in the BEM			
+0x800074,	GBT_STOP_CASE_BEM_CRMAA	,BEM中CRMAA超时终止	,The CRMAA timeout in  the BEM was terminated. Procedure			
+0x800075,	GBT_STOP_CASE_BEM_CML	,BEM中CML/CTS超时终止	,CML/CTS timeout  terminates in BEM			
+0x800076,	GBT_STOP_CASE_BATREV	,电池极性反接故障	,Battery polarity  reverse connection fault			
+0x800077,	GBT_STOP_CASE_BEM_CRO	,BEM中CRO超时终止	,The CRO timeout in  the BEM was terminated. Procedure			
+0x800078,	GBT_STOP_CASE_BRO_TIME	,BMS启动充电准备超时	,BMS charging  preparation timed out			
+0x800079,	GBT_STOP_CASE_CRO_OVER	,设备自检超时(预充的时候60S升不到预充电压)	,Device self-test  timeout (60S less than pre-charging voltage during pre-charging)			
+0x8000C9,	GBT_STOP_CASE_MAXVOL	,输出电压超过最大允许	,The output voltage  exceeds the maximum allowable			
+0x8000CA,	GBT_STOP_CASE_MAXCUR	,输出电流超过最大允许	,The output current  exceeds the maximum allowable			
+0x8000CB,	GBT_STOP_CASE_VOL_LOW	,输出欠压(模块输出电压小于电池电压)	,Output undervoltage  (module output voltage is less than battery voltage)			
+0x8000CC,	GBT_STOP_CASE_CUR_HIGH	,输出过流(模块输出电流大于BCL需求电流)	,Output overcurrent  (module output current is greater than the required current of BCL)			
+0x8000CD,	GBT_STOP_CASE_BCL_OVER	,电池充电需求报文(BCL)超时	,The battery charging  request message timed out			
+0x8000CE,	GBT_STOP_CASE_BCS_OVER	,电池充电需求报文(BCS)超时	,The battery charging  requirement message (BCS) times out			
+0x8000CF,	GBT_STOP_CASE_BSM_OVER	,动力蓄电池状态信息(BSM)超时	,Power battery status  information (BSM) timed out			
+0x8000D0,	GBT_STOP_CASE_PAUSE_OVER	,BSM报文暂停充电超过10min停止	,The BSM message stops  charging after 10 minutes			
+0x8000D1,	GBT_STOP_CASE_BSM_SIGN_VOL_H	,BSM报文中单体动力蓄电池电压过高	,The voltage of the  single power battery in the BSM packet is too high. Procedure			
+0x8000D2,	GBT_STOP_CASE_BSM_SIGN_VOL_L	,BSM报文中单体动力蓄电池电压过低	,The voltage of the  single power battery in the BSM packet is too low. Procedure			
+0x8000D3,	GBT_STOP_CASE_BSM_SOC_HIGH	,BSM报文中soc过高	,The soc in the BSM  packet is too high. Procedure			
+0x8000D4,	GBT_STOP_CASE_BSM_SOC_LOW	,BSM报文中soc过低	,The soc in the BSM  packet is too low. Procedure			
+0x8000D5,	GBT_STOP_CASE_BSM_CUR_OVER	,BSM报文中充电过电流	,Charging overcurrent  in the BSM packet			
+0x8000D6,	GBT_STOP_CASE_BSM_TEMP_OVER	,BSM报文中动力蓄电池温度过高	,The temperature of  the power battery in the BSM packet is too high. Procedure			
+0x8000D7,	GBT_STOP_CASE_BSM_INSU	,BSM报文中动力蓄电池绝缘状态异常	,The power battery  insulation status in the BSM packet is abnormal. Procedure			
+0x8000D8,	GBT_STOP_CASE_BSM_CONN	,BSM报文中连接器连接状态异常	,The connector  connection status in the BSM packet is abnormal. Procedure			
+0x8000D9,	GBT_STOP_CASE_BST_NORMAL	,BST正常终止	,The BST terminated  normally			
+0x8000DA,	GBT_STOP_CASE_BST_INSU	,BST绝缘故障	,The BST insulation is  faulty			
+0x8000DB,	GBT_STOP_CASE_BST_CONN_TEMP	,BST输出连接器过温	,The BST output  connector is overheated			
+0x8000DC,	GBT_STOP_CASE_BST_PART_TEMP	,BSTBMS元器件输出连接器过温	,BSTBMS The output  connector of a component is overheated			
+0x8000DD,	GBT_STOP_CASE_BST_CONN	,BST输出连接器故障	,The BST output  connector is faulty			
+0x8000DE,	GBT_STOP_CASE_BST_BAT_TEMP	,BST电池过温	,The BST battery is  overheated			
+0x8000DF,	GBT_STOP_CASE_BST_RELAY	,BST高压继电器故障	,The BST high voltage  relay is faulty			
+0x8000E0,	GBT_STOP_CASE_BST_TEST_VOL	,BST检测点电压故障	,The voltage of the  BST detection point is faulty			
+0x8000E1,	GBT_STOP_CASE_BST_CUR	,BST电流过大	,The BST current is  too large			
+0x8000E2,	GBT_STOP_CASE_BST_VOL	,BST电压过大	,The BST voltage is  too high			
+0x8000E3,	GBT_STOP_CASE_BST_OTHER	,BST其他	,BST Other			
+0x8000E4,	GBT_STOP_CASE_BEM_CCS	,BEM中CCS超时终止	,The CCS timeout in  the BEM is terminated. Procedure			
+0x8000E5,	GBT_STOP_CASE_BEM_CST	,BEM中CST超时终止	,The CST timeout in  the BEM was terminated. Procedure			
+0x8000E6,	GBT_STOP_CASE_BEM_CSD	,BEM中CSD超时终止	,The CSD timeout in  the BEM is terminated			
+0x8000E7,	GBT_STOP_CASE_BEM_OTHER	,BEM其他原因终止	,BEM terminated for  other reasons			

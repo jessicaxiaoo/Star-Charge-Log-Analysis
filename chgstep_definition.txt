@@ -1,0 +1,9 @@
+chgstep = 1: ?
+chgstep = 2: EV - EVSE communication step
+chgstep = 3: Insulation step
+chgstep = 4: releasing voltage
+chgstep = 5: ?
+chgstep = 6: pre-charge stage
+chgstep = 7: charging
+chgstep = 8: stop charge
+
